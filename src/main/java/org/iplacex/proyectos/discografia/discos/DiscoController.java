@@ -36,8 +36,13 @@ public class DiscoController {
         }
         boolean existe = iArtistaRepository.existsById(disco.idArtista);
         if(existe){
-            Disco discoInsert = iDiscoRepository.insert(disco);
-            return ResponseEntity.ok(discoInsert);
+            if(!iDiscoRepository.existsById(disco._id)){
+                Disco discoInsert = iDiscoRepository.insert(disco);
+                return ResponseEntity.ok(discoInsert);
+            }else{
+                return ResponseEntity.badRequest().build();
+            }
+            
         }else{
             return ResponseEntity.notFound().build();
         }

@@ -32,13 +32,12 @@ public class ArtistaController {
         if(!artista.validateData()){
             return ResponseEntity.badRequest().build();
         }
-        Artista artistaSave = iArtistaRepository.insert(artista);
-        if(artistaSave._id != null){
+        if(!iArtistaRepository.existsById(artista._id)){
+            Artista artistaSave = iArtistaRepository.insert(artista);
             return ResponseEntity.ok(artistaSave);
         }else{
             return ResponseEntity.badRequest().build();
-        }
-        
+        } 
     }
     @CrossOrigin(methods = RequestMethod.GET)
     @GetMapping(value = "/artistas", produces = MediaType.APPLICATION_JSON_VALUE)
