@@ -41,8 +41,7 @@ public class DiscoController {
                 return ResponseEntity.ok(discoInsert);
             }else{
                 return ResponseEntity.badRequest().build();
-            }
-            
+            }           
         }else{
             return ResponseEntity.notFound().build();
         }
