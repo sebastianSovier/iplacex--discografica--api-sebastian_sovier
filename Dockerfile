@@ -12,6 +12,7 @@ WORKDIR /app
 COPY --from=build /app/build/libs/*.jar discografia.jar
 
 EXPOSE 8080
+EXPOSE 443
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "discografia.jar"]
